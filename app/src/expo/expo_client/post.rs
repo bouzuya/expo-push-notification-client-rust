@@ -24,7 +24,7 @@ struct PushResultItem {
     details: Option<Value>,
 }
 
-pub(crate) async fn send_push_notifications(
+pub(super) async fn send_push_notifications(
     client: &reqwest::Client,
     push_message: ExpoPushMessage,
     access_token: Option<&str>,

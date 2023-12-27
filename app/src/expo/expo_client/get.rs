@@ -23,7 +23,7 @@ struct PushResultItem {
     details: Option<Value>,
 }
 
-pub(crate) async fn get_push_notification_receipts(
+pub(super) async fn get_push_notification_receipts(
     client: &reqwest::Client,
     push_ids: ExpoPushReceiptId,
     access_token: Option<&str>,
