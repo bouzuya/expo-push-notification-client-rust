@@ -40,21 +40,21 @@ pub(super) async fn send_push_notifications(
     }
 
     if !push_message.is_valid_expo_push_token() {
-        return Err(CustomError::InvalidArgument(format!(
-            "expo push toke must start with ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]",
-        )));
+        return Err(CustomError::InvalidArgument(
+            "expo push toke must start with ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]".to_string(),
+        ));
     }
 
     if !push_message.is_valid_priority() {
-        return Err(CustomError::InvalidArgument(format!(
-            "priority must be one of default, normal, or high",
-        )));
+        return Err(CustomError::InvalidArgument(
+            "priority must be one of default, normal, or high".to_string(),
+        ));
     }
 
     if !push_message.is_valid_sound() {
-        return Err(CustomError::InvalidArgument(format!(
-            "sound must be default or null",
-        )));
+        return Err(CustomError::InvalidArgument(
+            "sound must be default or null".to_string(),
+        ));
     }
 
     match client
