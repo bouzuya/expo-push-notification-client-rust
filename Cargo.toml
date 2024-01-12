@@ -8,7 +8,7 @@ description = "Expo Push Notification Client for Rust"
 license = "MIT"
 repository = "https://github.com/katayama8000/expo-push-notification-client"
 homepage = "https://github.com/katayama8000/expo-push-notification-client/blob/main/README.md"
-keywords = ["expo","web"]
+keywords = ["expo", "web"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -24,3 +24,8 @@ thiserror = "1.0.51"
 anyhow = "1.0.77"
 mockito = "1.2.0"
 tokio = { version = "1.35.0", features = ["full"] }
+
+# Uncomment to enable warnings when building.
+#
+# [lints.rust]
+# missing_docs = "warn"
