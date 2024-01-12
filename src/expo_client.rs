@@ -48,6 +48,54 @@ impl Expo {
                 .is_match(token)
     }
 
+    /// Send push notifications
+    ///
+    /// <https://docs.expo.dev/push-notifications/sending-notifications/#push-tickets>
+    ///
+    /// # Examples
+    ///
+    /// ```rust
+    /// # #[tokio::test]
+    /// # async fn test_send_push_notifications() -> anyhow::Result<()> {
+    /// #     let mut server = mockito::Server::new();
+    /// #     let url = server.url();
+    /// #     let mock = server
+    /// #         .mock("POST", "/--/api/v2/push/send")
+    /// #         .match_header("content-type", "application/json")
+    /// #         .match_body(r#"{"to":["ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]"]}"#)
+    /// #         .with_status(200)
+    /// #         .with_header("content-type", "application/json; charset=utf-8")
+    /// #         .with_body(
+    /// #             r#"
+    /// # {
+    /// #     "data": [
+    /// #         { "status": "ok", "id": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" }
+    /// #     ]
+    /// # }
+    /// # "#,
+    /// #         )
+    /// #         .create();
+    /// #     let expo = Expo::new(ExpoClientOptions {
+    /// #         base_url: Some(url),
+    /// #         ..Default::default()
+    /// #     });
+    ///
+    /// let response = expo
+    ///     .send_push_notifications(
+    ///         ExpoPushMessage::builder(["ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]"]).build()?,
+    ///     )
+    ///     .await?;
+    ///
+    /// assert_eq!(
+    ///     response,
+    ///     vec![ExpoPushTicket::Ok(ExpoPushSuccessTicket {
+    ///         id: ExpoPushReceiptId::from_str("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX")?
+    ///     })]
+    /// );
+    /// #     mock.assert();
+    /// #     Ok(())
+    /// # }
+    /// ```
     pub async fn send_push_notifications(
         &self,
         request: ExpoPushMessage,
